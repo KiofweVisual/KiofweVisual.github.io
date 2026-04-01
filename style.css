@@ -490,4 +490,15 @@ nav {
     .text-card {
         text-align: center;
     }
-}
+}@font-face {
+    font-family: 'MyCustomFont';
+    /* Use '../' if your CSS is in a subfolder like /css/style.css */
+    src: url('fonts/myfont.woff2') format('woff2'); 
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  h2.custom-title {
+    font-family: 'MyCustomFont', sans-serif;
+    text-transform: uppercase;
+  }
