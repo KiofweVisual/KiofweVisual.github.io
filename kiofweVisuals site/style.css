@@ -1,0 +1,504 @@
+/* --- GLOBAL RESET --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- NAVIGATION (Original) --- */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 25px;
+    text-align: center;
+    z-index: 1000;
+    background: #f4f1ea;
+}
+
+nav a {
+    color: #f4f1ea;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin: 0 20px;
+    opacity: 0.7;
+    transition: 0.3s;
+}
+
+nav a:hover { opacity: 1; }
+
+/* --- BURGER BAR STYLES --- */
+.menu-toggle {
+    display: none; /* Hidden on desktop */
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #333; /* Use #fff if your nav is dark */
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex; /* Show burger on mobile */
+        position: absolute;
+        right: 20px;
+        top: 15px;
+    }
+
+    .nav-links {
+        display: none; /* Hide links by default on mobile */
+        flex-direction: column;
+        width: 100%;
+        background: #f4f1ea; /* Matches your tan header */
+        position: absolute;
+        top: 60px;
+        left: 0;
+        padding: 20px 0;
+    }
+
+    .nav-links.active {
+        display: flex; /* Show links when burger is clicked */
+    }
+
+    .nav-links a {
+        margin: 10px 0;
+        color: #333; /* Dark text for the tan background */
+    }
+}
+
+/* --- HEADER AREA (Original Tan) --- */
+.header-area {
+    height: 35vh;
+    background-color: #f4f1ea;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.header-area h1 {
+    font-weight: 300;
+    letter-spacing: 12px;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    font-style: italic;
+    letter-spacing: 6px;
+    margin-top: 5px;
+}
+
+/* --- HOMEPAGE (Original Vertical Layout) --- */
+.home-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.home-section {
+    height: 20vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+}
+
+.bg-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(100%) brightness(40%);
+    transition: 0.8s ease;
+}
+
+.home-section:hover .bg-image {
+    filter: grayscale(0%) brightness(70%);
+    transform: scale(1.03);
+}
+
+.section-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+}
+
+.section-content h2 {
+    font-size: 2rem;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+/* --- MASONRY GRID (Lisa Michele Style) --- */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-auto-rows: 200px;
+    gap: 15px;
+    padding: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.photo-card {
+    position: relative;
+    overflow: hidden;
+    cursor: zoom-in;
+}
+
+.photo-card.tall { grid-row: span 2; }
+.photo-card.wide { grid-column: span 2; }
+
+.photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: 0.5s ease;
+}
+
+.photo-card:hover img { transform: scale(1.05); }
+
+/* --- LIGHTBOX (Click to open) --- */
+#lightbox {
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    cursor: zoom-out;
+}
+
+#lightbox.active { display: flex; }
+
+#lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+/* --- FOOTER --- */
+.site-footer {
+    background-color: #0a0a0a;
+    padding: 80px 20px;
+    text-align: center;
+    border-top: 1px solid #222;
+}
+
+.social-links a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 11px;
+    opacity: 0.6;
+}
+
+/*----back-to-top----*/
+/* --- BACK TO TOP BUTTON (Fixed Bottom Right) --- */
+.back-to-top {
+    position: fixed;     /* Stays in place when scrolling */
+    bottom: 30px;        /* Distance from the bottom */
+    right: 30px;         /* Distance from the right */
+    z-index: 1001;       /* Sits above other elements */
+    font-size: 10px;
+    color: #fff;         /* White text for better visibility on black */
+    background: rgba(255, 255, 255, 0.1); /* Subtle dark circle background */
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 50%;  /* Makes it a circle */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.back-to-top:hover {
+    background: #f4f1ea; /* Changes to your tan color on hover */
+    color: #333;
+    border-color: #f4f1ea;
+}
+
+/* --- SLIDESHOW CONTROLS --- */
+.lightbox-controls {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5%;
+    pointer-events: none; /* Allows clicking background through the container */
+    z-index: 2001;
+}
+
+.control-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    padding: 20px;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: 0.3s ease;
+    border-radius: 5px;
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+#image-counter {
+    position: absolute;
+    bottom: 30px;
+    color: #fff;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+/* Ensure the lightbox image fits well for the slideshow */
+#lightbox img {
+    max-width: 85%;
+    max-height: 80%;
+    object-fit: contain;
+    box-shadow: 0 0 50px rgba(0,0,0,0.8);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+/* --- MOBILE --- */
+@media (max-width: 768px) {
+    .header-area h1 { font-size: 1.5rem; letter-spacing: 5px; }
+    .gallery-grid { grid-template-columns: 1fr; padding: 15px; }
+    .photo-card.wide { grid-column: span 1; }
+    .home-section { height: 40vh; }
+}
+/* --- GLOBAL RESET --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- NAVIGATION --- */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px;
+    z-index: 1000;
+    background-color: #f4f1ea; /* Your original Tan color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.nav-links a {
+    color: #333;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin: 0 15px;
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.nav-links a:hover { opacity: 1; }
+
+/* --- BURGER BAR STYLES --- */
+.menu-toggle {
+    display: none; /* Hidden on desktop */
+    flex-direction: column;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+/* --- MOBILE RESPONSIVE NAV --- */
+@media (max-width: 768px) {
+    .menu-toggle { display: flex; }
+
+    .nav-links {
+        display: none; /* Hide links initially */
+        flex-direction: column;
+        width: 100%;
+        background: #f4f1ea;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        padding: 20px 0;
+        text-align: center;
+        border-top: 1px solid #ddd;
+    }
+
+    .nav-links.active { display: flex; }
+
+    .nav-links a { margin: 15px 0; font-size: 14px; }
+
+    /* Animation: Burger to X */
+    .menu-toggle.is-active .bar:nth-child(2) { opacity: 0; }
+    .menu-toggle.is-active .bar:nth-child(1) { transform: translateY(11px) rotate(45deg); }
+    .menu-toggle.is-active .bar:nth-child(3) { transform: translateY(-11px) rotate(-45deg); }
+}
+
+/* --- LIGHTBOX & SLIDESHOW --- */
+#lightbox {
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+#lightbox.active { display: flex; }
+
+.lightbox-controls {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5%;
+    pointer-events: none;
+}
+.control-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    padding: 20px;
+    cursor: pointer;
+    pointer-events: auto;
+}
+#image-counter {
+    position: absolute;
+    bottom: 30px;
+    color: #fff;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+/* --- BACK TO TOP --- */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    z-index: 999;
+}
+
+/* Centers the main content area */
+.about-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh; /* Gives it enough vertical space */
+    padding: 50px 20px;
+}
+
+/* Styles the grid containing your photo and text */
+.about-grid {
+    display: flex;
+    flex-direction: row; /* Puts photo and text side-by-side */
+    justify-content: center;
+    align-items: center;
+    gap: 50px; /* Space between the photo and the text */
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Ensures the text card is also centered internally */
+.text-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left; /* Keeps text readable while the container is centered */
+}
+
+/* Mobile Responsive: Stacks them vertically on small screens */
+@media (max-width: 768px) {
+    .about-grid {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .text-card {
+        text-align: center;
+    }
+}@font-face {
+    font-family: 'MyCustomFont';
+    /* Use '../' if your CSS is in a subfolder like /css/style.css */
+    src: url('fonts/myfont.woff2') format('woff2'); 
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  h2.custom-title {
+    font-family: 'MyCustomFont', sans-serif;
+    text-transform: uppercase;
+  }
